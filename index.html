@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>New Found Thread — {{COMPANY_NAME}} Overview Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="New Found Thread — overview for {{COMPANY_NAME}}: catalog, demo video, products, partnership keys, and request form." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Fonts (kept exactly as in your upload) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+   :root{
+    --bg:#0b0b0c; --panel:#121214; --muted:#8e9096; --text:#e9eaee;
+    --accent:#c9ff4d; --accent-ink:#0f1a00;
+    --border:#1f2024; --cta:#e6e8ee; --cta-ink:#0d0f14;
+    --shadow:0 10px 30px rgba(0,0,0,.25);
+    --radius:16px; --radius-lg:22px; --maxw:1120px;
+
+    --field-bg: #1a1d24;
+    --field-bg-hover: #202630;
+    --field-border: #303743;
+    --field-border-hover: #3a4250;
+    --field-border-focus: #c9ff4d;
+    --placeholder: #b8bec9;
+  }
+
+  *{box-sizing:border-box} html,body{height:100%}
+  body{ margin:0; }
+
+  a{ text-underline-offset:3px }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:28px 20px 80px}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:30;
+    border-bottom:1px solid var(--rg-line);
+    background: var(--rg-cream);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; max-width:var(--maxw); margin:0 auto; padding:10px 20px}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+  .brand img{height:200px; width:auto; border-radius:8px}
+  .btn{appearance:none; border:0; cursor:pointer; border-radius:12px; padding:10px 14px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px}
+  .btn.sml{padding:8px 12px; border-radius:10px}
+
+  /* Announcement bar */
+  .announcement{
+    background:#eef3ee;
+    color:#2a3b2f;
+    font:600 14px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    border-bottom:1px solid var(--rg-line);
+  }
+  .announcement .wrap{ padding:10px 20px; }
+
+  /* Hero */
+  .hero{margin-top:18px; padding:34px 28px; border-radius:var(--radius-lg);}
+  .hero h1{margin:0 0 8px; font-size:clamp(28px, 3.6vw, 42px)}
+  .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+
+  /* Sections */
+  section{margin-top:28px; border-radius:var(--radius); padding:22px}
+  section h2{margin:0 0 6px; font-size:22px}
+  section p.lead{margin:0 0 14px}
+
+  /* Layout */
+  .grid{display:grid; gap:16px}
+  @media (min-width: 900px){
+    .grid-2{grid-template-columns:1fr 1fr}
+    .grid-3{grid-template-columns:repeat(3, 1fr)}
+    .grid-4{grid-template-columns:repeat(4, 1fr)}
+  }
+
+  /* Media */
+  .video-embed{width:100%; aspect-ratio:16/9; border:0; border-radius:12px}
+
+  /* Cards */
+  .card, .kp-card{border-radius:12px; padding:14px}
+  .card img{width:100%; height:auto; display:block; border-radius:8px}
+  .muted{opacity:.9}
+
+  /* Key Products specifics */
+  #products{ padding:28px; }
+  @media (min-width: 900px){
+    #products .grid{ grid-template-columns: 1fr 1fr; }
+  }
+  #products .card{
+    padding:18px; box-shadow: var(--shadow);
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  #products .card:hover{ transform: translateY(-1px); }
+  #products .card img{
+    aspect-ratio: 4 / 5; object-fit: contain; border-radius:12px; padding:8px;
+  }
+  #products h3{ font-size:22px; margin-top:8px; }
+
+  /* Merchandising gallery */
+  #merchandising .merch-grid{display:grid; gap:14px; grid-template-columns:1fr;}
+  @media (min-width:900px){ #merchandising .merch-grid{ grid-template-columns: repeat(2, minmax(400px, 400px)); justify-content:center; } }
+  #merchandising .merch{ width:100%; max-width:520px; }
+  #merchandising .merch img{
+    aspect-ratio: 4 / 5; object-fit: contain; padding:6px; border-radius:12px;
+  }
+  #merchandising .merch figcaption{ font-size:13px }
+
+  /* Footer */
+  footer{margin:28px 0 60px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px}
+  .mini{font-size:14px}
+
+  /* === Rivers & Glen Light Theme Overrides (replaces PJ vars only) === */
+  :root{
+    --rg-cream:   #ece8dc;
+    --rg-paper:   #ffffff;
+    --rg-ink:     #26241f;
+    --rg-ink-2:   #2f2b24;
+    --rg-muted:   #6a6458;
+    --rg-line:    #d7d0c0;
+    --rg-accent:  #2f5135;
+    --rg-accent-2:#24402a;
+  }
+
+  body{
+    background: var(--rg-paper);
+    color: var(--rg-ink);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 17px; line-height: 1.65;
+  }
+  h1, h2, h3, .eyebrow {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    color: var(--rg-ink-2);
+    letter-spacing: .02em;
+  }
+  .hero h1{ font-weight: 700; }
+  section h2{ font-weight: 600; }
+  a{ color: var(--rg-accent); }
+  a:hover{ color: var(--rg-accent-2); }
+
+  header{
+    border-bottom: 1px solid var(--rg-line);
+  }
+  .nav .btn.ghost{ border:0; color: var(--rg-ink-2); background:transparent; }
+  .nav .btn.ghost:hover{ background: rgba(47,81,53,.06); }
+
+  .hero{
+    background: linear-gradient(180deg, #fff, #f7f4ec);
+    border: 1px solid var(--rg-line);
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  }
+
+  section{
+    background:#fff; border:1px solid var(--rg-line); box-shadow:0 6px 18px rgba(0,0,0,.05);
+  }
+  section p.lead{ color: var(--rg-muted); }
+
+  .card, .kp-card{background:#fff; border:1px solid var(--rg-line);}
+  .muted{ color: var(--rg-muted); }
+
+  .btn.fill{
+    background: var(--rg-accent); color:#fff; box-shadow:0 6px 18px rgba(0,0,0,.08);
+  }
+  .btn.fill:hover{ background: var(--rg-accent-2);}
+  .btn.ghost{ border:1px solid var(--rg-line); color: var(--rg-accent);}
+  .btn.ghost:hover{ background:rgba(47,81,53,.06); }
+
+  input, textarea{
+    background:#fff; border:1.5px solid var(--rg-line); color:var(--rg-ink);
+  }
+  input:focus, textarea:focus{ border-color:var(--rg-accent); box-shadow:0 0 0 3px rgba(47,81,53,.12); }
+
+  #products .card img, #merchandising .merch img{ background:#fff; border:1px solid var(--rg-line); }
+
+  .eyebrow{ background:#e7efe8; color: var(--rg-ink-2); display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+
+  footer{ color: var(--rg-muted); border-top:1px solid var(--rg-line);} 
+  .brand img.brand-logo-rg{ height:60px; }
+  @media (min-width:900px){ .brand img.brand-logo-rg{ height:130px; } }
+
+  /* Top brand mark (NFT logo) above hero */
+  .brand-mark{ display:flex; justify-content:center; align-items:center; margin-top:14px; }
+  .brand-mark .ntf-logo-top{ height:90px; width:auto; opacity:.98; }
+  @media (min-width:900px){ .brand-mark .ntf-logo-top{ height:200px; } }
+
+  /* Personal note placeholder */
+  .personal-note{
+    border:1px dashed var(--rg-line);
+    background:#fffdfa;
+    border-radius:12px;
+    padding:14px;
+    margin:12px 0 18px 0;
+  }
+  .personal-note .note-eyebrow{
+    font: 600 12px/1 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    letter-spacing:.08em; text-transform:uppercase;
+    color: var(--rg-muted);
+    margin:0 0 6px 0;
+  }
+  .personal-note .note-body{ margin:0; color: var(--rg-ink); }
+
+  /* Coming Spring 2027 cards */
+  #spring-2027 .card img{
+    aspect-ratio:4/5; object-fit:contain; border:1px solid var(--rg-line); background:#fff; border-radius:12px; padding:8px;
+  }
+  #spring-2027 h3{ margin:10px 0 6px; font-size:22px; }
+  #spring-2027 .sub{ font:600 14px/1.4 Inter, sans-serif; color:var(--rg-muted); margin:-4px 0 10px; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="{{COMPANY_NAME}}">
+        <img class="brand-logo-rg" src="{{COMPANY_LOGO_URL}}" alt="{{COMPANY_NAME}} logo" />
+      </a>
+      <nav class="top-cta">
+        <a class="btn ghost sml" href="#catalog">Catalog</a>
+        <a class="btn ghost sml" href="#video">Video</a>
+        <a class="btn ghost sml" href="#products">Products</a>
+        <a class="btn ghost sml" href="#merchandising">Merchandising</a>
+        <a class="btn ghost sml" href="#eastern">Eastern</a>
+        <a class="btn ghost sml" href="#partnership">Partnership</a>
+        <a class="btn fill sml" href="#request">Track Sample Shipment</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Announcement -->
+  <div class="announcement">
+    <div class="wrap">
+      Please save this link — it will be updated with every new development.
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <!-- New Found Thread logo ABOVE the first framed block -->
+    <div class="brand-mark" aria-hidden="false">
+      <img class="ntf-logo-top" src="images/logo-white-alpha.png?v=1" alt="New Found Thread logo" />
+    </div>
+
+    <!-- HERO (first framed block) -->
+    <section class="hero" aria-label="Intro">
+      <div class="eyebrow">Built for {{COMPANY_NAME}}</div>
+
+      <!-- Personal note now directly under eyebrow -->
+      <div class="personal-note" id="personal-note"
+           data-prospect="{{prospect_name}}"
+           data-message="{{personal_message}}">
+        <div class="note-eyebrow">Notes/Updates</div>
+        <p class="note-body">
+          
+        </p>
+      </div>
+
+      <h1>The New Foundation of Men's Bottoms</h1>
+      <p>View our updated catalog, see the product in action, and track samples.</p>
+      <div class="cta-row">
+        <a class="btn fill" href="#catalog">View Catalog</a>
+        <a class="btn ghost" href="#video">Watch Video Demo</a>
+        <button class="btn ghost" id="copyLinkBtn" type="button">Copy Page Link</button>
+      </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section id="catalog" aria-label="Updated Catalog">
+      <h2>Explore the Collection</h2>
+      <p class="lead">The latest catalog covers the Fletch Pant + Short, the 365 Five-Pocket, and The Eastern chino program.</p>
+      <div class="grid grid-2">
+        <a class="card" href="https://wockettech.com/riversglen/images/catalog.pdf" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block">
+          <img src="images/catalog-poster.png" alt="New Found Thread Catalog cover" />
+          <h3>Open Catalog (PDF)</h3>
+          <p class="muted">Opens in a new tab; save or share easily.</p>
+        </a>
+        <div>
+          
+
+          <div class="kp-card" style="margin-top:14px">
+            <h3 style="margin:0 0 6px">What sets us apart</h3>
+            <ul class="muted" style="margin:8px 0 0 18px">
+              <li>All bottoms variants are individually graded for optimized fit across more body types.</li>
+              <li>Premium fabrics for peerless comfort, quality, durability per category.</li>
+              <li>Hybrid cotton performance — “Serious performance cloaked in style.” Cotton look &amp; feel (not shiny poly).</li>
+              <li>Patented cleaning pockets for screens and phones — highly relevant to today’s mobile consumers — driving loyalty and repeat sales.</li>
+              <li>Fit, comfort, functionality, versatility: everyday durable luxury.</li>
+              <li>Seamlessly transitions from course, work, dinner — whatever.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="video" aria-label="Product Demo">
+      <h2>See Our Patented Cleaning Pockets in Action</h2>
+      <p class="lead">A highly relevant differentiator for today’s mobile lifestyles — optical-grade microfiber pockets keep screens safe and clean, feel luxurious, are lint-free and durable.</p>
+      <video class="video-embed" controls preload="metadata" poster="images/video-poster.png">
+        <source src="Fletch%20On%20Fish_3.mp4" type="video/mp4" />
+        Your browser does not support the video tag. You can <a href="Fletch%20On%20Fish_3.mp4">download the video</a> instead.
+      </video>
+      <p class="mini" style="margin-top:8px"><a href="Fletch%20On%20Fish_3.mp4" download>Download Video</a> • <span>Samples In-Route – ETA – 9/5/25</span></p>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" aria-label="Key Products">
+      <h2>Key Products</h2>
+      <p class="lead">Core styles designed for specialty retail — easy to sell, easy to replenish.</p>
+      <div class="grid grid-4">
+        <div class="card">
+          <img src="images/fletch-pant.jpg" alt="Fletch Pant product image" />
+          <h3>Fletch Pant</h3>
+          <p class="muted">Hybrid cotton performance pant that looks and feels like luxury cotton. Stretch, wicking, comfort without the “poly look.”</p>
+          <p class="muted">37% Recycled Poly, 34% Cotton, 25%, 4% Spandex</p>
+        </div>
+        <div class="card">
+          <img src="images/fletch-shorts.webp" alt="Fletch Short (Chino Short) product image" />
+          <h3>Fletch Short (Chino Short)</h3>
+          <p class="muted">Same Fletch DNA in a chino short — stretch, wicking, comfort without the “poly” look.</p>
+          <p class="muted">37% Recycled Poly, 34% Cotton, 25%, 4% Spandex</p>
+        </div>
+        <div class="card">
+          <img src="images/365-pant.jpg" alt="365 Five-Pocket product image" />
+          <h3>365 Five-Pocket</h3>
+          <p class="muted">Refined five-pocket with incredible stretch comfort and recovery. An everyday staple built for repeat wear.</p>
+          <p class="muted">98% Recycled Cotton, 2% Spandex</p>
+        </div>
+        <div class="card">
+          <img src="images/eastern-chino.jpeg" alt="The Eastern chino product image" />
+          <h3>The Eastern (Spring &amp; Fall)</h3>
+          <p class="muted">Incredible hand-feel, “Wow” leg-feel. Durable, versatile everyday luxury for repeat wear.</p>
+          <p class="muted">67% Cotton, 27% Modal, 6% Spandex</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERCHANDISING -->
+    <section id="merchandising" aria-label="In-store branding and Merchandising">
+      <h2>In-store branding and Merchandising</h2>
+      <p class="lead">
+        All orders come with stunning in-store branding and branded wooden hangers. Additional in-store branding available per orders size.
+        <br>
+        In development: Pop-up free standing self-selling merchandising displays.
+      </p>
+
+      <div class="merch-grid">
+        <figure class="card merch">
+          <img src="images/merch-1.png" alt="In-store branding placeholder 1" />
+          <figcaption class="muted">Branding / signage (placeholder)</figcaption>
+        </figure>
+
+        <figure class="card merch">
+          <img src="images/merch-2.png" alt="In-store branding placeholder 2" />
+          <figcaption class="muted">Branded wooden hangers (placeholder)</figcaption>
+        </figure>
+
+        <figure class="card merch">
+          <img src="images/merch-3.png" alt="Merchandising placeholder 3" />
+          <figcaption class="muted">Table / wall presentation (placeholder)</figcaption>
+        </figure>
+
+        <figure class="card merch">
+          <img src="images/IMG_2674.JPG" alt="Pop-up free standing merchandising display (in development)" />
+          <figcaption class="muted">Pop-up free standing display (in development)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- THE EASTERN (SPRING & FALL) -->
+    <section id="eastern" aria-label="The Eastern — Spring & Fall">
+      <h2>The Eastern — Available Spring &amp; Fall</h2>
+      <p class="lead">A refined chino designed for all-day wear and “Wow” feel inside and out. Versatile silhouette that works across seasons, tops, and blazers.</p>
+      <p class="muted">67% Cotton, 27% Modal, 6% Spandex</p>
+
+      <div class="grid grid-2">
+        <div class="kp-card">
+          <img src="images/eastern-chino.jpeg" alt="The Eastern Chino Pant" style="width:100%; height:auto; border-radius:10px;" />
+        </div>
+        <div class="grid" style="gap:16px">
+          <div class="kp-card">
+            <h3>Fabric &amp; Feel</h3>
+            <p class="muted">VersaLux™ cotton-modal-spandex blend (peached/sueded finish). Breathable, soft, and durable with added stretch.</p>
+          </div>
+          <div class="kp-card">
+            <h3>Fit &amp; Details</h3>
+            <p class="muted">Modern-straight chino with clean lines, refined pocketing, and our optical-cleaning microfiber lining. A seasonal staple with everyday wearability.</p>
+          </div>
+          <div class="kp-card">
+            <h3>Merchandising Notes</h3>
+            <p class="muted">Complements Fletch (hybrid performance) and 365 (five-pocket). A tiered chino option for Spring and Fall floorsets.</p>
+          </div>
+          <div class="kp-card">
+            <h3>Availability</h3>
+            <p class="muted">Available for <strong>Spring and Fall 2026 deliveries</strong>. Offered in core neutrals and seasonal colors. Sizes 30–42 (33 &amp; 35) and 30, 32 inseam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEYS TO PARTNERSHIP -->
+    <section id="partnership" aria-label="Keys to a Great Partnership">
+      <h2>Keys to a Great Partnership</h2>
+      <p class="lead">Easy to onboard, easy to sell, easy to replenish.</p>
+      <div class="grid grid-3">
+        <div class="kp-card">
+          <h3>Proven Sell-Through</h3>
+          <p class="muted">Differentiated pocket tech + comfort drives try-ons and repeat purchases.</p>
+        </div>
+        <div class="kp-card">
+          <h3>Keystone Margins</h3>
+          <p class="muted">Clean pricing — never be undercut by online pricing (per MSRP).</p>
+        </div>
+        <div class="kp-card">
+          <h3>Fast Fill-Ins</h3>
+          <p class="muted">Streamlined reorders and timely replenishment to keep core sizes in stock.</p>
+        </div>
+        <div class="kp-card">
+          <h3>Dropshipping</h3>
+          <p class="muted">We can ship to your store or directly to your customers who purchase at the store.</p>
+        </div>
+        <div class="kp-card">
+          <h3>Assortment Guidance</h3>
+          <p class="muted">Right-sized color/size curves for specialty retail; easy first buy with depth in winners.</p>
+        </div>
+        <div class="kp-card">
+          <h3>In-store Branding Catalog</h3>
+          <p class="muted">Acrylic, self-selling in-store branding piece for customers and quick sales reference.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IN THE PIPELINE - DEC 2026 -->
+    <section id="pipeline-2026" aria-label="In the Pipeline - Dec 2026">
+      <h2>In the Pipeline — Dec 2026 - Inventory/Order Tracking</h2>
+      <h3>Pant programs are historically difficult.  We're making it easy.</h3>
+      <p class="lead">Inventory Order Tracking System — Fully transparent tracking timeline and detailed overview of our manufacturing process and your orders.</p>
+      <div class="grid grid-2">
+        <div class="kp-card">
+          <h3>What You’ll See</h3>
+          <p class="muted">Live production milestones (yarn → weave → dye → cut &amp; sew → QC → outbound), PO-level ETAs, and shipment splits with tracking.</p>
+        </div>
+        <div class="kp-card">
+          <h3>Why It Matters</h3>
+          <p class="muted">Less guesswork, better floor planning, and clear comms to your team and customers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING SPRING 2027 -->
+    <section id="spring-2027" aria-label="Coming Spring 2027">
+      <h2>Coming Spring 2027</h2>
+      <div class="grid grid-2">
+        <!-- Product 1: The Bajio -->
+        <div class="card">
+          <img src="images/NFT-bajio-5P-pant.png" alt="The Bajio pant image" />
+          <h3>The Bajio</h3>
+          <div class="sub">Fishing Performance Cloaked In Style</div>
+          <p>A pant built for the dock but tailored for downtown. Cut in a modern five-pocket/chino silhouette, it wears like your favorite dress casual yet works like your go-to fishing gear. The lightweight stretch fabric dries fast, breathes in the Southern heat, and shrugs off salt, sun, and stains with a PFC-free finish. Hidden gussets and articulated knees move with you, while discreet details—like a microfiber-lined pocket for glasses or phone, a tool sleeve tucked in the seam, and glare-free matte buttons that won’t flash in the sun—keep performance at hand without sacrificing style. From boat to boardroom to backyard, this is fishing performance cloaked in timeless design.</p>
+        </div>
+
+        <!-- Product 2: Eastern Luxe Cashmere Five-Pocket -->
+        <div class="card">
+          <img src="images/cashmere-5P-pant.png" alt="The Eastern Luxe Cashmere Five-Pocket pant image" />
+          <h3>The Eastern Luxe Cashmere Five-Pocket</h3>
+          <div class="sub">Extreme luxury redefined</div>
+          <p>This versatile five-pocket pant (like all our bottoms) is crafted from a cashmere-rich blend that’s soft, breathable, and seasonless—perfect from New England winters to Carolina summers. Tailored with a modern, versatile fit, it features discreet performance touches like a microfiber-lined pocket for eyewear or phone. A highly refined staple built to move seamlessly along the eastern latitudes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVATE LABEL -->
+    <section id="private-label" aria-label="Private Label Options">
+      <h2>Private Label</h2>
+      <p class="lead">For select partners, we can develop private-label programs. While our focus remains building the New Found Thread brand, we’re happy to explore private-label solutions when they help a retailer meet specific needs.</p>
+    </section>
+
+    <!-- TRACK YOUR SAMPLES -->
+    <section id="request" aria-label="Track Shipment">
+      <h2>Track Samples Shipment</h2>
+      <div>
+        <a class="btn fill" 
+           href="https://www.ups.com/track?loc=en_US&requester=ST&trackNums=1ZB5X1930337724025/trackdetails" 
+           target="_blank" rel="noopener">
+          Track Shipment
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="mini">&copy; <span id="year"></span> New Found Thread</div>
+      <div class="mini">
+        <a href="#top">Back to top</a> • <a href="mailto:hello@newfoundthread.com">Contact</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href'); const el=document.querySelector(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+
+    // Copy page link
+    (function(){
+      const btn=document.getElementById('copyLinkBtn');
+      if(!btn) return;
+      btn.addEventListener('click', async ()=>{
+        try{
+          await navigator.clipboard.writeText(location.href);
+          const prev=btn.textContent; btn.textContent='Link Copied'; setTimeout(()=>btn.textContent=prev,1500);
+        }catch{ alert('Copy not supported — please copy from the address bar.'); }
+      });
+    })();
+
+    // Year
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
