@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--rg-cream:#ece8dc;--rg-paper:#ffffff;--rg-ink:#26241f;--rg-ink-2:#2f2b24;--rg-muted:#6a6458;--rg-line:#d7d0c0;--rg-accent:#2f5135;--rg-accent-2:#234529;--maxw:1120px}
-html,body{margin:0;background:var(--rg-paper);color:var(--rg-ink);font:17px/1.65 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial}
-h1,h2,h3{font-family:"Cormorant Garamond",serif;color:var(--rg-ink-2)}
+html,body{margin:0;background:var(--rg-paper);color:var(--rg-ink);font:17px/1.65 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;color:var(--rg-ink-2)} /* headings fallback; their CSS may override via fontStack */
 a{color:var(--rg-accent)} a:hover{color:var(--rg-accent-2)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 20px 80px}
 header{border-bottom:1px solid var(--rg-line)}
@@ -20,10 +20,10 @@ header{border-bottom:1px solid var(--rg-line)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:600;text-decoration:none;border:1px solid var(--rg-line)}
 .btn.fill{background:var(--rg-accent);color:#fff}.btn.fill:hover{background:var(--rg-accent-2)}
 .btn.ghost:hover{background:rgba(47,81,53,.06)}
-.announcement{background:#eef3ee;color:#2a3b2f;border-bottom:1px solid var(--rg-line);font:600 14px/1.5 Inter}
+.announcement{background:#eef3ee;color:#2a3b2f;border-bottom:1px solid var(--rg-line);font:600 14px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif}
 .announcement .wrap{padding:10px 20px}
 .hero{margin:18px 0 0;padding:34px 28px;border-radius:20px;background:linear-gradient(180deg,#fff,#f7f4ec);border:1px solid var(--rg-line);box-shadow:0 6px 18px rgba(0,0,0,.06)}
-.eyebrow{display:inline-block;background:#e7efe8;color:var(--rg-ink-2);padding:6px 10px;border-radius:999px;font:700 12px/1 Inter;letter-spacing:.06em;text-transform:uppercase}
+.eyebrow{display:inline-block;background:#e7efe8;color:var(--rg-ink-2);padding:6px 10px;border-radius:999px;font:700 12px/1 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;letter-spacing:.06em;text-transform:uppercase}
 section{margin-top:28px;border:1px solid var(--rg-line);border-radius:16px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.05);padding:22px}
 .grid{display:grid;gap:16px} @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}.grid-4{grid-template-columns:repeat(4,1fr)}}
 .card{border:1px solid var(--rg-line);border-radius:12px;padding:14px}
